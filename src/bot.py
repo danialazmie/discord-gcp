@@ -16,22 +16,22 @@ async def on_ready():
     print(f"Logged on as {bot.user}!")
 
 @bot.command()
-async def add_ip(ctx, ip: str):
-    if fw.add_ip(ip):
+async def add_ip(ctx, resource: str, ip: str):
+    if fw.add_ip(resource, ip):
         await ctx.send(f"Added IP: {ip}")
     else:
         await ctx.send(f"Failed to add IP: {ip}")
 
 @bot.command()
-async def remove_ip(ctx, ip: str):
-    if fw.remove_ip(ip):
+async def remove_ip(ctx, resource: str, ip: str):
+    if fw.remove_ip(resource, ip):
         await ctx.send(f"Removed IP: {ip}")
     else:
         await ctx.send(f"Failed to remove IP: {ip}")
 
 @bot.command()
-async def list_ips(ctx):
-    ips = fw.list_ips()
+async def list_ips(ctx, resource_name: str):
+    ips = fw.list_ips(resource_name)
 
     message = ''
 
